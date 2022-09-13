@@ -30,7 +30,8 @@ version: 2.1
 #             #  npm install
 #             #  Add revert code here. You can find this in the Getting Started section.
 #               exit 1
-#             fi 
+#             fi
+
 jobs:
   build-frontend:
     docker:
@@ -66,33 +67,33 @@ jobs:
           paths: [backend/node_modules]
           key: backend-build
 
-  test-frontend:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - checkout
-      - restore_cache:
-          keys: [frontend-build]
-      - run:
-          name: Test Frontend
-          command: |
-            cd frontend
-            npm install
-            npm test
+  # test-frontend:
+  #   docker:
+  #     - image: circleci/node:13.8.0
+  #   steps:
+  #     - checkout
+  #     - restore_cache:
+  #         keys: [frontend-build]
+  #     - run:
+  #         name: Test Frontend
+  #         command: |
+  #           cd frontend
+  #           npm install
+  #           npm test
                 
-  test-backend:
-     docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - checkout
-      - restore_cache:
-          keys: [backend-build]
-      - run:
-          name: Test Backend
-          command: |
-            cd backend
-            npm install
-            npm test            
+  # test-backend:
+  #    docker:
+  #     - image: circleci/node:13.8.0
+  #   steps:
+  #     - checkout
+  #     - restore_cache:
+  #         keys: [backend-build]
+  #     - run:
+  #         name: Test Backend
+  #         command: |
+  #           cd backend
+  #           npm install
+  #           npm test            
 #   scan-frontend:
 #     docker:
 #       # Docker image here
