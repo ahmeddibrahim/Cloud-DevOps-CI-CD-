@@ -18,6 +18,19 @@ commands:
           name: Install Ansible
           command: |
             python3 -m pip install --user ansible
+
+  install_nodejs:
+    description: Install Node.js 13
+    steps:
+      - run:
+          name: Install Node.js 13
+          command: |
+            # Install Node.js LTS version as our base Node.js version
+            curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+            sudo apt install -y nodejs
+            # Use n version manager to use Node.js v13.8.0
+            sudo npm install --global n
+            sudo n 13.8.0
 #   destroy-environment:
 #     description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
 #     parameters:
@@ -52,7 +65,7 @@ commands:
 jobs:
   build-frontend:
     docker:
-      - image: cimg/python:3.10
+      - image: cimg/node:13.8.0
     steps:
       - checkout
       - restore_cache:
@@ -69,7 +82,7 @@ jobs:
 
   build-backend:
     docker:
-      - image: cimg/python:3.10
+      - image: cimg/node:13.8.0
     steps:
       - checkout
       - restore_cache:
@@ -86,7 +99,7 @@ jobs:
 
   test-frontend:
     docker:
-      - image: cimg/python:3.10
+      - image: cimg/node:13.8.0
     steps:
       - checkout
       - restore_cache:
@@ -100,7 +113,7 @@ jobs:
                 
   test-backend:
     docker:
-      - image: cimg/python:3.10
+      - image: cimg/node:13.8.0
     steps:
       - checkout
       - restore_cache:
@@ -114,7 +127,7 @@ jobs:
 
   scan-frontend:
     docker:
-      - image: cimg/python:3.10
+      - image: cimg/node:13.8.0
     steps:
       - checkout
       - restore_cache:
@@ -129,7 +142,7 @@ jobs:
 
   scan-backend:
     docker:
-      - image: cimg/python:3.10
+      - image: cimg/node:13.8.0
     steps:
       - checkout
       - restore_cache:
@@ -145,7 +158,7 @@ jobs:
 
   deploy-infrastructure:
     docker:
-      image: cimg/python:3.10
+      image: cimg/base:stable
     steps:
       - checkout
       - install_aws_cli
