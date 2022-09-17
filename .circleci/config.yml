@@ -17,7 +17,7 @@ commands:
       - run:
           name: Install Ansible
           command: |
-            python3 -m pip install --user ansible
+            python3 -m pip3 install --user ansible
 
   install_nodejs:
     description: Install Node.js 13
