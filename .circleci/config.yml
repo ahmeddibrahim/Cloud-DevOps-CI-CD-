@@ -393,10 +393,10 @@ jobs:
             if [[ "${STACKS[@]}" =~ "${OldWorkflowID}" ]]
             then
               echo "------------------------------------ Deleted Confirmed-----------------------------------"
-              echo > aws s3 rm "s3://udapeople-${OldWorkflowID}" --recursive
-              echo > aws cloudformation delete-stack --stack-name "udapeople-backend-${OldWorkflowID}"
-              echo "pls"
-              echo < aws cloudformation delete-stack --stack-name "udapeople-frontend-${OldWorkflowID}"
+              aws s3 rm "s3://udapeople-${OldWorkflowID}" --recursive
+              aws cloudformation delete-stack --stack-name "udapeople-backend-${OldWorkflowID}"
+              aws cloudformation delete-stack --stack-name "udapeople-frontend-${OldWorkflowID}"
+              echo " deleted s3 s3://udapeople-$OldWorkflowID Successfully"
             else
               echo "------------------------------------ Cannot cleanup-----------------------------------"
             fi
