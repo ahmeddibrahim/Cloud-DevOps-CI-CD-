@@ -1,0 +1,10 @@
+
+URL1 : https://github.com/ahmeddibrahim/Cloud-DevOps-CI-CD-\
+
+URL2 : http://udapeople-02c57f3.s3-website-us-east-1.amazonaws.com\
+
+URL3: http://d2qv878qtrgtqu.cloudfront.net/
+
+URL4: ec2-54-227-32-44.compute-1.amazonaws.com
+
+URL5: ec2-3-83-132-30.compute-1.amazonaws.com
