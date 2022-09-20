@@ -382,7 +382,7 @@ jobs:
       - install_aws_cli
       - install_nodejs
       - run:
-          name: Remove old stacks and files
+          name: Cleanup stage
           command: |
             export STACKS=($(aws cloudformation list-stacks \
                 --query "StackSummaries[*].StackName" \
@@ -392,9 +392,12 @@ jobs:
             echo Old Workflow ID: $OldWorkflowID 
             if [[ "${STACKS[@]}" =~ "${OldWorkflowID}" ]]
             then
+              echo "------------------------------------ Deleted Confirmed-----------------------------------"
               aws s3 rm "s3://udapeople-${OldWorkflowID}" --recursive
               aws cloudformation delete-stack --stack-name "udapeople-backend-${OldWorkflowID}"
               aws cloudformation delete-stack --stack-name "udapeople-frontend-${OldWorkflowID}"
+            else
+              echo "------------------------------------ Cannot cleanup-----------------------------------"
             fi
 
             
